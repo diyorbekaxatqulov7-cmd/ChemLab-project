@@ -1,0 +1,575 @@
+/* =========================================================
+   ChemLab - asosiy uslublar (reset, dizayn o'zgaruvchilari, tipografiya)
+   Modern Scientific + Realistic Laboratory
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Manrope", "Inter", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --lab-blue: #2f7fd4;
+  --lab-cyan: #4cc4f0;
+  --lab-teal: #2bb3a3;
+
+  --hazard-none: #7e8ba0;
+  --hazard-low: #3fbf7f;
+  --hazard-medium: #e2a52f;
+  --hazard-high: #e5533d;
+
+  --accent: var(--lab-blue);
+  --accent-soft: rgba(47, 127, 212, 0.14);
+  --accent-contrast: #ffffff;
+
+  --transition: 180ms ease;
+  --transition-slow: 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Tungi rejim (asosiy) */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #070d17;
+  --bg-glow-1: rgba(47, 127, 212, 0.22);
+  --bg-glow-2: rgba(76, 196, 240, 0.12);
+  --surface: #0e1828;
+  --surface-2: #142338;
+  --surface-3: #1b2f4a;
+  --surface-glass: rgba(16, 26, 43, 0.72);
+  --border: rgba(148, 178, 214, 0.18);
+  --border-strong: rgba(148, 178, 214, 0.32);
+  --text: #e9f1fb;
+  --text-muted: #9db1c9;
+  --text-faint: #708ba8;
+  --shadow-sm: 0 2px 8px rgba(2, 8, 20, 0.5);
+  --shadow: 0 18px 40px rgba(2, 8, 20, 0.55);
+  --shadow-lg: 0 32px 70px rgba(2, 8, 20, 0.6);
+  --bench-top: linear-gradient(180deg, #22303f 0%, #1a2431 55%, #131b25 100%);
+  --bench-edge: #0f151d;
+}
+
+/* Kunduzgi rejim */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --bg-glow-1: rgba(47, 127, 212, 0.14);
+  --bg-glow-2: rgba(76, 196, 240, 0.1);
+  --surface: #ffffff;
+  --surface-2: #f1f6fc;
+  --surface-3: #e4eef9;
+  --surface-glass: rgba(255, 255, 255, 0.82);
+  --border: #d8e3f0;
+  --border-strong: #bccde1;
+  --text: #0d1b2b;
+  --text-muted: #52698a;
+  --text-faint: #7b90aa;
+  --shadow-sm: 0 2px 8px rgba(20, 50, 90, 0.08);
+  --shadow: 0 16px 34px rgba(20, 50, 90, 0.12);
+  --shadow-lg: 0 30px 60px rgba(20, 50, 90, 0.16);
+  --bench-top: linear-gradient(180deg, #f7f9fc 0%, #eef3f9 55%, #e2eaf3 100%);
+  --bench-edge: #c9d6e4;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1100px 600px at 12% -10%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(900px 520px at 92% 4%, var(--bg-glow-2), transparent 62%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.18;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--lab-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(76, 196, 240, 0.32);
+}
+
+/* ============ Layout yordamchilari ============ */
+.container {
+  width: min(1240px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding: clamp(2.25rem, 5vw, 4.25rem) 0;
+}
+
+.section-head {
+  max-width: 760px;
+  margin-bottom: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.section-head p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--lab-cyan);
+  margin-bottom: 0.75rem;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.faint {
+  color: var(--text-faint);
+}
+
+.grid {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: -64px;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: 0;
+  text-decoration: none;
+}
+
+/* ============ Kartochkalar ============ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.1rem, 2.2vw, 1.6rem);
+  box-shadow: var(--shadow-sm);
+}
+
+.card--glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.card--interactive {
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.card__title {
+  margin-bottom: 0.35rem;
+}
+
+.card__text {
+  color: var(--text-muted);
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ============ Tugmalar ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition), border-color var(--transition),
+    box-shadow var(--transition), opacity var(--transition);
+  text-decoration: none;
+  min-height: 44px;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--lab-blue), #1f68b3);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(47, 127, 212, 0.32);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 14px 30px rgba(47, 127, 212, 0.42);
+}
+
+.btn--secondary {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.btn--secondary:hover {
+  background: var(--surface-2);
+}
+
+.btn--accent {
+  background: linear-gradient(135deg, #2bb3a3, #1c8f83);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(43, 179, 163, 0.28);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.btn--ghost:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.btn--danger {
+  background: rgba(229, 83, 61, 0.14);
+  border-color: rgba(229, 83, 61, 0.4);
+  color: #ffb4a6;
+}
+
+[data-theme="light"] .btn--danger {
+  color: #b5311d;
+}
+
+.btn--lg {
+  padding: 0.95rem 1.7rem;
+  font-size: 1.03rem;
+}
+
+.btn--sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  min-height: 38px;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+/* ============ Belgilar (badge / chip) ============ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.chip--active {
+  background: var(--accent-soft);
+  border-color: rgba(76, 196, 240, 0.5);
+  color: var(--text);
+}
+
+.chip--button {
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.badge--none {
+  background: rgba(126, 139, 160, 0.16);
+  color: #a9b6c7;
+  border-color: rgba(126, 139, 160, 0.3);
+}
+
+.badge--low {
+  background: rgba(63, 191, 127, 0.16);
+  color: #59d79c;
+  border-color: rgba(63, 191, 127, 0.35);
+}
+
+.badge--medium {
+  background: rgba(226, 165, 47, 0.18);
+  color: #f0bd5c;
+  border-color: rgba(226, 165, 47, 0.38);
+}
+
+.badge--high {
+  background: rgba(229, 83, 61, 0.18);
+  color: #ff8f78;
+  border-color: rgba(229, 83, 61, 0.42);
+}
+
+[data-theme="light"] .badge--none {
+  color: #5d6b7d;
+}
+
+[data-theme="light"] .badge--low {
+  color: #17784a;
+}
+
+[data-theme="light"] .badge--medium {
+  color: #8a5c06;
+}
+
+[data-theme="light"] .badge--high {
+  color: #a92d17;
+}
+
+/* ============ Forma elementlari ============ */
+.field {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field:focus-within {
+  border-color: rgba(76, 196, 240, 0.6);
+  box-shadow: 0 0 0 3px rgba(76, 196, 240, 0.14);
+}
+
+.field input,
+.field select {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.field svg {
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+/* ============ Ogohlantirish va bo'sh holat ============ */
+.notice {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(76, 196, 240, 0.3);
+  background: rgba(76, 196, 240, 0.09);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.notice--warn {
+  border-color: rgba(226, 165, 47, 0.42);
+  background: rgba(226, 165, 47, 0.12);
+}
+
+.notice--error {
+  border-color: rgba(229, 83, 61, 0.42);
+  background: rgba(229, 83, 61, 0.12);
+}
+
+.notice--success {
+  border-color: rgba(63, 191, 127, 0.4);
+  background: rgba(63, 191, 127, 0.12);
+}
+
+.notice strong {
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: clamp(1.6rem, 4vw, 2.6rem) 1.2rem;
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border-strong);
+  background: var(--surface-2);
+}
+
+.empty-state__icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+

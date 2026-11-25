@@ -1,0 +1,534 @@
+/* =========================================================
+   ChemLab - qobiq (navbar, footer) va bosh sahifa uslublari
+   ========================================================= */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
+
+/* ============ Navbar ============ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--surface-glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 68px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(47, 127, 212, 0.28), rgba(76, 196, 240, 0.2));
+  border: 1px solid rgba(76, 196, 240, 0.3);
+  font-size: 1.15rem;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.brand__tagline {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-left: auto;
+}
+
+.navbar__link {
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: color var(--transition), background var(--transition);
+}
+
+.navbar__link:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  text-decoration: none;
+}
+
+.navbar__link.is-active {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: 0.5rem;
+}
+
+.navbar__burger {
+  display: none;
+}
+
+/* ============ Til tanlagich ============ */
+.lang {
+  position: relative;
+}
+
+.lang__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 42px;
+  padding: 0 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.lang__button:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+.lang__flag {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.lang__label {
+  white-space: nowrap;
+}
+
+.lang__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 190px;
+  padding: 0.4rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  z-index: 60;
+}
+
+.lang__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.lang__item:hover {
+  background: var(--surface-2);
+}
+
+.lang__item.is-active {
+  background: var(--accent-soft);
+}
+
+.lang__item small {
+  margin-left: auto;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* ============ Mobil menyu ============ */
+.mobile-menu {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 0.6rem 0 1rem;
+  background: var(--surface);
+}
+
+.mobile-menu.is-open {
+  display: block;
+}
+
+.mobile-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0.4rem;
+  border-radius: var(--radius);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.mobile-menu__link:hover {
+  background: var(--surface-2);
+  text-decoration: none;
+}
+
+.mobile-menu__link.is-active {
+  background: var(--accent-soft);
+}
+
+/* ============ Footer ============ */
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.footer__grid {
+  display: grid;
+  gap: 1.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  padding: clamp(1.8rem, 4vw, 2.8rem) 0 1.4rem;
+}
+
+.footer__title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  margin-bottom: 0.7rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.footer__list a,
+.footer__list button {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.92rem;
+  text-align: left;
+}
+
+.footer__list a:hover,
+.footer__list button:hover {
+  color: var(--text);
+}
+
+.footer__bottom {
+  border-top: 1px solid var(--border);
+  padding: 1rem 0 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+/* ============ Hero ============ */
+.hero {
+  position: relative;
+  padding: clamp(2.2rem, 5vw, 4rem) 0 clamp(1.8rem, 4vw, 3rem);
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.6rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(76, 196, 240, 0.32);
+  background: rgba(76, 196, 240, 0.1);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+}
+
+.hero__title {
+  margin-bottom: 0.7rem;
+}
+
+.hero__accent {
+  display: block;
+  background: linear-gradient(120deg, var(--lab-cyan), var(--lab-blue) 60%, #7dd3fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__lead {
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  max-width: 46ch;
+}
+
+.hero__desc {
+  color: var(--text-muted);
+  max-width: 52ch;
+  margin-bottom: 1.5rem;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.hero__points {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.93rem;
+}
+
+.hero__points li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.hero__points svg {
+  color: var(--lab-teal);
+  flex-shrink: 0;
+}
+
+.hero__visual {
+  position: relative;
+}
+
+/* ============ Bosh sahifa bo'limlari ============ */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.feature-card__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--accent-soft);
+  color: var(--lab-cyan);
+  margin-bottom: 0.5rem;
+}
+
+.steps {
+  counter-reset: step;
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.step-card {
+  position: relative;
+  padding-top: 2.4rem;
+}
+
+.step-card__num {
+  position: absolute;
+  top: 1.1rem;
+  left: clamp(1.1rem, 2.2vw, 1.6rem);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lab-blue), #1f68b3);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 18px rgba(47, 127, 212, 0.35);
+}
+
+.mode-card {
+  text-align: left;
+  height: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 1.3rem;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition), background var(--transition);
+}
+
+.mode-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+}
+
+.mode-card.is-active {
+  border-color: rgba(76, 196, 240, 0.65);
+  background: linear-gradient(180deg, rgba(76, 196, 240, 0.1), transparent);
+}
+
+.mode-card__emoji {
+  font-size: 1.4rem;
+}
+
+.cta-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(120deg, rgba(47, 127, 212, 0.16), rgba(76, 196, 240, 0.08)),
+    var(--surface);
+  padding: clamp(1.7rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.cta-banner h2 {
+  margin-bottom: 0.5rem;
+}
+
+.cta-banner p {
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin-inline: auto;
+  margin-bottom: 1.4rem;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.stat {
+  text-align: center;
+  padding: 1.1rem 0.8rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 800;
+  display: block;
+  color: var(--lab-cyan);
+}
+
+.stat__label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ============ Responsive (navbar) ============ */
+@media (max-width: 980px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .navbar__nav {
+    display: none;
+  }
+
+  .navbar__burger {
+    display: inline-flex;
+  }
+
+  .navbar__actions {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand__tagline {
+    display: none;
+  }
+
+  .lang__label {
+    display: none;
+  }
+
+  .navbar__inner {
+    min-height: 60px;
+    gap: 0.6rem;
+  }
+
+  .container {
+    width: min(1240px, 100% - 1.75rem);
+  }
+}
+

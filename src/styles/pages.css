@@ -1,0 +1,494 @@
+/* =========================================================
+   ChemLab - sahifalar: davriy jadval, tajribalar, o'rganish
+   ========================================================= */
+
+.page-head {
+  padding: clamp(1.6rem, 4vw, 2.6rem) 0 1.2rem;
+}
+
+.page-head h1 {
+  margin-bottom: 0.3rem;
+}
+
+.page-head p {
+  color: var(--text-muted);
+  max-width: 68ch;
+  margin: 0;
+}
+
+.page-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+
+.page-toolbar .field {
+  flex: 1 1 260px;
+  max-width: 420px;
+}
+
+/* ============ Davriy jadval ============ */
+.elements-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.periodic-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.6rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1rem;
+  scrollbar-width: thin;
+}
+
+.periodic-caption {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.periodic {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(44px, 1fr));
+  gap: 4px;
+  min-width: 860px;
+}
+
+.el-tile {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--tile-rgb, 126, 139, 160), 0.4);
+  background: rgba(var(--tile-rgb, 126, 139, 160), 0.14);
+  color: var(--text);
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  font-family: inherit;
+}
+
+.el-tile:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 22px rgba(2, 8, 20, 0.4);
+  z-index: 5;
+}
+
+.el-tile.is-active {
+  border-color: var(--lab-cyan);
+  box-shadow: 0 0 0 2px rgba(76, 196, 240, 0.55);
+}
+
+.el-tile.is-dim {
+  opacity: 0.28;
+}
+
+.el-tile__z {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 0.52rem;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+
+.el-tile__sym {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(0.72rem, 1.1vw, 0.98rem);
+  line-height: 1;
+}
+
+.el-tile__name {
+  font-size: 0.48rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.05;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.el-tile__tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  min-width: 150px;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
+  z-index: 20;
+  text-align: left;
+  display: none;
+}
+
+.el-tile:hover .el-tile__tip,
+.el-tile:focus-visible .el-tile__tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.el-tile__tip strong {
+  display: block;
+  font-size: 0.86rem;
+}
+
+.el-tile__tip span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.el-tile--spacer {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 1px dashed var(--border-strong);
+  display: grid;
+  place-items: center;
+  font-size: 0.52rem;
+  color: var(--text-faint);
+  text-align: center;
+  padding: 2px;
+}
+
+.el-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+}
+
+.el-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(var(--tile-rgb, 126, 139, 160), 0.4);
+  background: rgba(var(--tile-rgb, 126, 139, 160), 0.12);
+}
+
+.el-legend__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: rgba(var(--tile-rgb, 126, 139, 160), 0.85);
+}
+
+.el-detail {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.el-detail__symbol {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(var(--tile-rgb, 126, 139, 160), 0.5);
+  background: rgba(var(--tile-rgb, 126, 139, 160), 0.18);
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.el-detail__rows {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.el-detail__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.9rem;
+}
+
+.el-detail__row:last-child {
+  border-bottom: 0;
+}
+
+.el-detail__key {
+  color: var(--text-muted);
+}
+
+.el-detail__val {
+  font-weight: 600;
+  text-align: right;
+}
+
+.el-empty {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* ============ Tajribalar sahifasi ============ */
+.exp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  height: 100%;
+}
+
+.exp-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.exp-card__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--lab-cyan);
+}
+
+.exp-card__eq {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--lab-cyan);
+  word-break: break-word;
+}
+
+.exp-card__expect {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.exp-card__footer {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exp-substances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.exp-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ============ O'rganish sahifasi ============ */
+.learn-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.learn-list {
+  display: grid;
+  gap: 0.35rem;
+  position: sticky;
+  top: 88px;
+}
+
+.learn-list__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.learn-list__btn:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.learn-list__btn.is-active {
+  background: var(--accent-soft);
+  border-color: rgba(76, 196, 240, 0.45);
+  color: var(--text);
+}
+
+.learn-body {
+  display: grid;
+  gap: 1rem;
+}
+
+.learn-body h2 {
+  margin-bottom: 0.4rem;
+}
+
+.learn-facts {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.learn-facts li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.94rem;
+  color: var(--text-muted);
+}
+
+.learn-facts svg {
+  color: var(--lab-teal);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.learn-visual {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  padding: 1.2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(320px 180px at 50% 0%, rgba(76, 196, 240, 0.12), transparent 70%),
+    var(--surface-2);
+  min-height: 220px;
+}
+
+.learn-visual__caption {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+.learn-advanced {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  border: 1px dashed rgba(76, 196, 240, 0.4);
+  background: rgba(76, 196, 240, 0.07);
+  font-size: 0.92rem;
+}
+
+/* pH shkalasi */
+.ph-scale {
+  width: min(560px, 100%);
+}
+
+.ph-scale__bar {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  height: 26px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.ph-scale__seg {
+  display: grid;
+  place-items: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ph-scale__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.45rem;
+}
+
+.ph-examples {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.8rem;
+}
+
+.ph-examples div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+/* ============ Sahifalar responsive ============ */
+@media (max-width: 1080px) {
+  .elements-layout,
+  .learn-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .el-detail,
+  .learn-list {
+    position: static;
+  }
+
+  .periodic {
+    min-width: 780px;
+  }
+}
+
+@media (max-width: 720px) {
+  .periodic {
+    min-width: 660px;
+  }
+
+  .periodic-scroll {
+    padding: 0.75rem;
+  }
+
+  .el-tile__name {
+    display: none;
+  }
+}
+
